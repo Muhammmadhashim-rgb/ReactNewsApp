@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 
 export default class News extends Component {
-    articles =  [
+  articles = [
     {
       "source": {
         "id": null,
@@ -200,19 +200,6 @@ export default class News extends Component {
     },
     {
       "source": {
-        "id": "abc-news",
-        "name": "ABC News"
-      },
-      "author": "ABC News - Breaking News, Latest News and Videos",
-      "title": "Robert F. Kennedy Jr. fires two top deputies at Department of Health and Human Services - ABC News - Breaking News, Latest News and Videos",
-      "description": null,
-      "url": "https://abcnews.go.com/Politics/robert-kennedy-jr-fires-top-deputies-department-health/story?id\\\\u003d123795370",
-      "urlToImage": null,
-      "publishedAt": "2025-07-16T12:45:00Z",
-      "content": null
-    },
-    {
-      "source": {
         "id": "cnn",
         "name": "CNN"
       },
@@ -252,31 +239,34 @@ export default class News extends Component {
     }
   ]
 
-    constructor(){
-        super()
-        console.log("Hey! I,am a Constructor Form News");
-        this.state = {
-            articles : this.articles,
-            loading : false
-        }
-        
+  constructor() {
+    super()
+    console.log("Hey! I,am a Constructor Form News");
+    this.state = {
+      articles: this.articles,
+      loading: false
     }
-    render() {
-        return (
-            <div className='container mt-5'>
-                <h2 className='mb-4'>News Monkey- React App</h2>
-                <div className="row">
-                    <div className="col-md-4" >
-                        <NewsItem title={"My Title"} description={"My Des"} imageurl="https://static.politico.com/45/45/66589f4841c385ed0ec884069b02/u-s-congress-76622.jpg"/>
-                    </div>
-                    <div className="col-md-4">
-                        <NewsItem  title={"My Title"} description={"My Des"} />
-                    </div>
-                    <div className="col-md-4">
-                        <NewsItem title={"My Title"} description={"My Des"}  />
-                    </div>
-                </div>
+
+  }
+  render() {
+    return (
+
+      <div className='container mt-5'>
+        <h2 className='mb-4'>News Monkey- React App</h2>
+
+        <div className="row">
+
+          {this.state.articles.map((element) => {
+            return <div className="col-md-4"  key={element.url}>
+              <NewsItem  title={element.title?.slice(0, 45)} description={element.description?.slice(0, 88)} imageurl = {element.urlToImage} newsurl={element.url} />
             </div>
-        )
-    }
+
+          })}
+
+        </div>
+
+
+      </div>
+    )
+  }
 }
